@@ -184,13 +184,44 @@ int insertionSortCArray(CArray *array) {
 }
 
 int valueOcurranceCArray(CArray *array, int value) {
+    int counter = 0;
+    for (int i = 0; i < array->size; i++) {
+        if (array->array[i] == value) {
+            counter++;
+        }
+    }
+    return counter;
 }
 
 CArray * valuePositionsCArray(CArray *array, int value) {
+    int total = valueOcurranceCArray(array, value);
+    CArray* result = getCArray(total);
+    int j = 0;
+    for (int i = 0; i < array->size; i++) {
+        if (array->array[i] == value) {
+            result->array[j] = i;
+            j++;
+        }
+    }
+    return result;
 }
 
 int findMinCArray(CArray *array) {
+    int min = array->array[0];
+    for (int i = 1; i < array->size; i++) {
+        if (array->array[i] < min) {
+            min = array->array[i];
+        }
+    }
+    return min;
 }
 
 int findMaxCArray(CArray *array) {
+    int max = array->array[0];
+        for (int i = 1; i < array->size; i++) {
+            if (array->array[i] > max) {
+                max = array->array[i];
+            }
+        }
+    return max;
 }
