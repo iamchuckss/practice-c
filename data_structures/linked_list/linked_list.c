@@ -5,42 +5,41 @@
 #include <stdarg.h>
 #include "linked_list.h"
 
-#define L List_T
 
 /* Initialize list */
-L List_init (void) {
-    L list;
-    list = (L) malloc(sizeof(L));
-    list->next = NULL;
-    return list;
+Node List_init (void) {
+    Node head;
+    head = (Node) malloc(sizeof(struct ListNode));
+    head->next = NULL;
+    return head;
 }
 
 /* Push an element onto top of the list */
-L List_push(L list, void *val) {
-    L new_elem = (L) malloc(sizeof(L));
-    new_elem->val = val;
-    new_elem->next = list;
-    return new_elem;
+Node List_push(Node head, void *val) {
+    Node new_node = (Node) malloc(sizeof(struct ListNode));
+    new_node->val = val;
+    new_node->next = head;
+    return new_node;
 }
 
 /* Get length of list */
-int List_length(L list) {
+int List_length(Node head) {
     int n = 0;
-    while (list != NULL) {
+    while (head != NULL) {
         n++;
-        list = list->next;
+        head = head->next;
     }
     return n;
 }
 
 /* Convert list to array */
-void **List_toArray(L list) {
-    int i,  n = List_length(list);
+void **List_toArray(Node head) {
+    int i,  n = List_length(head);
     void **array = (void **) malloc((n+1)*sizeof(*array));
 
     for (i = 0; i < n; i++) {
-        array[i] = list->val;
-        list = list->next;
+        array[i] = head->val;
+        head = head->next;
     }
     array[i] = NULL;
     return array;

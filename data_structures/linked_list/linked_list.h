@@ -1,23 +1,21 @@
 #ifndef __LIST__
 #define __LIST__
 
-#define L List_T
-typedef struct L *L;
+typedef struct ListNode *Node;
 
-struct L {
+struct ListNode {
     void *val;
-    L next;
+    Node next;
 };
 
-extern      L List_init(void);
-extern      L List_push(L list, void *val);
-extern int    List_length(L list);
-extern void **List_toArray(L list);
-extern      L List_append(L list, L tail);
-extern      L List_list(L list, void *val, ...);
+extern      Node List_init(void);
+extern      Node List_push(Node head, void *val);
+extern int    List_length(Node head);
+extern void **List_toArray(Node head);
+extern      Node List_append(Node head, Node node);
+extern      Node List_list(Node head, void *val, ...);
 /* TODO */
-extern      L List_copy(L list);
-extern int    List_pop(L *list);
+extern      Node List_copy(Node head);
+extern int    List_pop(Node *head);
 
-#undef L
 #endif
